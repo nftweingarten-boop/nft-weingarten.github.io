@@ -262,12 +262,20 @@
     <button id="lightbox-close" class="absolute top-6 right-8 text-white text-5xl font-bold hover:text-secondary transition">×</button>
   </div>
 
-  <script>
-    // Fade-in
+<script>
+    // Fade-in - trigger on load AND scroll
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.05 });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Also trigger immediately on load in case elements are already visible
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.fade-in').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight) el.classList.add('visible');
+      });
+    });
 
     // Mobile menu
     document.getElementById('menu-toggle').addEventListener('click', () => {
@@ -301,3 +309,4 @@
   </script>
 </body>
 </html>
+
