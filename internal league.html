@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Internal Matches - NFT Weingarten</title>
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+  <link rel="icon" type="image/jpeg" href="images/logo.jpg">
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { primary:'#1e40af', secondary:'#dc2626' } } }
+    };
+  </script>
+  <style>
+    /* 🔥 Scroll animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* 🧾 Post expansion */
+    .post-desc {
+      max-height: 4.5em;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    .post-desc.expanded {
+      max-height: 1000px;
+    }
+    .show-more {
+      color: #1e40af;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .show-more:hover {
+      color: #dc2626;
+      text-decoration: underline;
+    }
+
+    /* ✨ Shared media hover animation (images + videos) */
+    .media-item {
+      position: relative;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      cursor: pointer;
+    }
+    .media-item:hover {
+      transform: scale(1.03);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    /* ✨ Caption fade animation */
+    .relative.group p {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.4s ease-in-out;
+    }
+    .relative.group:hover p {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* 🎥 Video overlay ripple */
+    .video-wrapper {
+      position: relative;
+    }
+    .video-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.25);
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      transition: transform 0.5s ease, opacity 0.4s ease;
+    }
+    .video-wrapper:hover::after {
+      transform: translate(-50%, -50%) scale(1.2);
+      opacity: 1;
+    }
+
+    /* 🖼️ Lightbox */
+    #lightbox {
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(4px);
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+  <!-- ✅ Navbar -->
+  <nav class="fixed w-full top-0 left-0 bg-primary text-white shadow-lg z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center h-16 px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center">
+        <img src="images/logo.jpg" alt="NFT Weingarten Logo" class="h-12 w-12 object-cover transition-shadow duration-300 hover:shadow-[0_0_12px_#dc2626]">
+        <span class="ml-3 text-lg font-semibold">NFT Weingarten</span>
+      </div>
+      <div class="hidden md:flex space-x-6 items-center">
+        <a href="front.html" class="hover:text-gray-200">Home</a>
+        <a href="photos.html" class="hover:text-gray-200">Gallery</a>
+        <a href="CU.html" class="hover:text-gray-200">Contact</a>
+      </div>
+      <button id="menu-toggle" class="md:hidden text-2xl"><i class="ri-menu-line"></i></button>
+    </div>
+  </nav>
+
+  <!-- 🏆 Header -->
+  <header class="bg-secondary text-white py-20 mt-16 text-center fade-in">
+    <h1 class="text-5xl font-bold mb-4">Internal Matches & Red Bull Cups</h1>
+    <p class="text-red-100 text-lg">Senior vs Juniors • Red Bull Cup Seasons 1–4</p>
+  </header>
+
+  <!-- 📜 Wall Section -->
+  <section class="py-16 fade-in">
+    <div class="max-w-4xl mx-auto px-4 space-y-10">
+
+      <!-- 👥 Senior vs Juniors 2024 -->
+      <div class="bg-white shadow-md rounded-xl p-4 hover:shadow-xl transition duration-300 fade-in">
+        <div class="flex items-center mb-4">
+          <img src="images/logo.jpg" class="w-10 h-10 rounded-md mr-3" alt="NFT Logo">
+          <div>
+            <h3 class="font-semibold text-primary">NFT Weingarten</h3>
+            <p class="text-sm text-gray-500">📅 1st September 2024 – Senior vs Juniors</p>
+          </div>
+        </div>
+        <p class="text-gray-700 post-desc">
+          The first-ever “Senior vs Juniors” match, held on September 1, 2024, was a thrilling encounter filled with laughter, competitive energy, and great sportsmanship. The Seniors showcased their experience and composure, while the Juniors impressed with their energy and quick play. After an exciting contest, the Juniors clinched a narrow 1–0 victory, but the true win was the bond formed across generations.
+        </p>
+        <span class="show-more">Show More</span>
+        <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="relative group">
+            <img src="images/svj_2024/1000050837.png" alt="Junior Celebration" class="rounded-lg w-full h-64 object-cover shadow-md media-item open-image">
+            <p class="absolute bottom-2 left-2 bg-black/60 text-white text-sm px-3 py-1 rounded-md">Team Junior</p>
+          </div>
+          <div class="relative group">
+            <img src="images/svj_2024/1000050839.png" alt="Team Spirit" class="rounded-lg w-full h-64 object-cover shadow-md media-item open-image">
+            <p class="absolute bottom-2 left-2 bg-black/60 text-white text-sm px-3 py-1 rounded-md">Team Senior</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 👥 Senior vs Juniors 2025 -->
+      <div class="bg-white shadow-md rounded-xl p-4 hover:shadow-xl transition duration-300 fade-in">
+        <div class="flex items-center mb-4">
+          <img src="images/logo.jpg" class="w-10 h-10 rounded-md mr-3" alt="NFT Logo">
+          <div>
+            <h3 class="font-semibold text-primary">NFT Weingarten</h3>
+            <p class="text-sm text-gray-500">📅 20th February 2025 – Senior vs Juniors</p>
+          </div>
+        </div>
+        <p class="text-gray-700 post-desc">
+          The 2025 edition was even more intense — the Juniors came prepared to defend their pride! The weather was perfect, the energy unmatched, and both sides gave everything on the field. After a thrilling 1–1 draw in regular time, the Juniors triumphed once again, winning 4–3 on penalties. It was another exciting and friendly internal showdown that strengthened team spirit across generations.
+        </p>
+        <span class="show-more">Show More</span>
+        <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="relative group">
+            <img src="images/svj_2025/1000050593.png" alt="Junior Team" class="rounded-lg w-full h-64 object-cover shadow-md media-item open-image">
+            <p class="absolute bottom-2 left-2 bg-black/60 text-white text-sm px-3 py-1 rounded-md">Junior Team</p>
+          </div>
+          <div class="relative group">
+            <img src="images/svj_2025/1000050594.png" alt="Senior Team" class="rounded-lg w-full h-64 object-cover shadow-md media-item open-image">
+            <p class="absolute bottom-2 left-2 bg-black/60 text-white text-sm px-3 py-1 rounded-md">Senior Team</p>
+          </div>
+          <div class="relative group">
+            <img src="images/svj_2025/1000050595.png" alt="MVP Yukpuhang Jabegu" class="rounded-lg w-full h-64 object-cover shadow-md media-item open-image">
+            <p class="absolute bottom-2 left-2 bg-black/60 text-white text-sm px-3 py-1 rounded-md">MVP – Yukpuhang Jabegu</p>
+          </div>
+          <div class="relative group">
+            <img src="images/svj_2025/1000050596.png" alt="Prediction Winner Bishal Gadal" class="rounded-lg w-full h-64 object-cover shadow-md media-item open-image">
+            <p class="absolute bottom-2 left-2 bg-black/60 text-white text-sm px-3 py-1 rounded-md">Prediction Winner – Bishal Gadal</p>
+          </div>
+        </div>
+      </div>
+
+    <!-- 🏆 Red Bull Cups -->
+      <div class="bg-white shadow-md rounded-xl p-4 hover:shadow-xl transition duration-300 fade-in">
+        <h3 class="font-semibold text-primary mb-4 text-xl">🏆 Red Bull Cup - Season 1 (February 20, 2025)</h3>
+        <p class="text-gray-700 post-desc">
+          The first Red Bull Cup kicked off NFT Weingarten’s competitive journey. Teams showed early coordination, energy, and unity. The event was a foundation for building our football legacy in Weingarten.
+        </p>
+        <span class="show-more">Show More</span>
+        <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <img src="images/rc1/1000050835.png" alt="RBC Season 1" class="rounded-lg w-full h-64 object-cover shadow-md media-item open-image">
+          <img src="images/rc1/1000050836.png" alt="RBC Season 1" class="rounded-lg w-full h-64 object-cover shadow-md media-item open-image">
+        </div>
+      </div>
+
+      <div class="bg-white shadow-md rounded-xl p-4 hover:shadow-xl transition duration-300 fade-in">
+        <h3 class="font-semibold text-primary mb-4 text-xl">🏆 Red Bull Cup - Season 2 (April 20, 2025)</h3>
+        <p class="text-gray-700 post-desc">
+          The second Red Bull Cup featured stronger teams and higher intensity. Our players demonstrated remarkable teamwork and endurance, leaving a solid impression in the regional football scene. Due to technical issues, photos of it are not available right now.
+        </p>
+        <span class="show-more">Show More</span>
+      </div>
+
+      <div class="bg-white shadow-md rounded-xl p-4 hover:shadow-xl transition duration-300 fade-in">
+        <h3 class="font-semibold text-primary mb-4 text-xl">🏆 Red Bull Cup - Season 3 (October 25, 2025)</h3>
+        <p class="text-gray-700 post-desc">
+          The fourth and latest season of the Red Bull Cup was a massive success. The team showed maturity and strength, with unforgettable goals and amazing saves. It was the perfect end to a growing tradition that keeps NFT Weingarten bonded as one family. With the score of 3-2 under the captaincy of Biraj Tamang, they won against Yukphuwang’s team.
+        </p>
+        <span class="show-more">Show More</span>
+        <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <img src="images/rc4/mvp.jpeg" alt="MVP" class="rounded-lg w-full h-64 object-cover shadow-md media-item open-image">
+          <video src="images/rc4/rc4_1.mp4" controls class="rounded-lg w-full h-64 shadow-md object-cover media-item video-wrapper"></video>
+          <video src="images/rc4/IMG_0643.MOV" controls class="rounded-lg w-full h-64 shadow-md object-cover media-item video-wrapper"></video>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 🌍 Footer -->
+  <footer class="bg-gray-900 text-white pt-12 pb-6 mt-10">
+    <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center sm:text-left">
+      <div>
+        <h3 class="text-xl font-semibold mb-3 text-secondary">📍 Location</h3>
+        <p class="text-gray-400">Weingarten, Baden-Württemberg, Germany</p>
+      </div>
+      <div>
+        <h3 class="text-xl font-semibold mb-3 text-secondary">📞 Contact Us</h3>
+        <p class="text-gray-400">Email: <a href="mailto:nft.weingarten@gmail.com" class="text-secondary hover:underline">nft.weingarten@gmail.com</a></p>
+      </div>
+    
+    <!-- 🌐 Follow Us -->
+    <div>
+      <h3 class="text-xl font-semibold mb-3 text-secondary"> Follow Us</h3>
+      <div class="flex justify-center sm:justify-start space-x-4 mt-2">
+        <a href="https://www.facebook.com/NFT.weingarten/" target="_blank" class="text-gray-400 hover:text-blue-500 text-2xl transition"><i class="ri-facebook-fill"></i></a>
+        <a href="https://www.instagram.com/nft.weingarten/" target="_blank" class="text-gray-400 hover:text-pink-500 text-2xl transition"><i class="ri-instagram-fill"></i></a>
+        <a href="https://www.tiktok.com/@nft.weingarten" target="_blank" class="text-gray-400 hover:text-white text-2xl transition"><i class="ri-tiktok-fill"></i></a>
+        <a href="https://www.youtube.com/@nft-weingarten" target="_blank" class="text-gray-400 hover:text-white text-2xl transition"><i class="ri-youtube-fill"></i></a>     
+      </div>
+    </div>
+  </div>
+
+    </div>
+    <div class="border-t border-gray-700 mt-10 pt-4 text-center">
+      <p class="text-gray-400 text-sm">© 2024 Nepalese Football Team Weingarten. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- 🖼️ Lightbox -->
+  <div id="lightbox" class="hidden fixed inset-0 z-50 flex justify-center items-center">
+    <img id="lightbox-img" src="" class="max-w-[90%] max-h-[90%] rounded-lg shadow-2xl" alt="Fullscreen">
+    <button id="lightbox-close" class="absolute top-6 right-8 text-white text-4xl font-bold hover:text-secondary transition">×</button>
+  </div>
+
+  <script>
+    // Fade-in scroll
+    document.addEventListener('scroll', () => {
+      document.querySelectorAll('.fade-in').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 50) el.classList.add('visible');
+      });
+    });
+
+    // Show More toggle
+    document.querySelectorAll('.show-more').forEach(button => {
+      button.addEventListener('click', () => {
+        const desc = button.previousElementSibling;
+        desc.classList.toggle('expanded');
+        button.textContent = desc.classList.contains('expanded') ? 'Show Less' : 'Show More';
+      });
+    });
+
+    // Lightbox open
+    document.querySelectorAll('.open-image').forEach(img => {
+      img.addEventListener('click', () => {
+        document.getElementById('lightbox-img').src = img.src;
+        document.getElementById('lightbox').classList.remove('hidden');
+      });
+    });
+
+    // Lightbox close
+    document.getElementById('lightbox-close').addEventListener('click', () => {
+      document.getElementById('lightbox').classList.add('hidden');
+    });
+
+    // Close on background click
+    document.getElementById('lightbox').addEventListener('click', e => {
+      if (e.target.id === 'lightbox') e.currentTarget.classList.add('hidden');
+    });
+  </script>
+</body>
+</html>
