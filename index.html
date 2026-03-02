@@ -20,360 +20,285 @@
   </script>
   <style>
     html { scroll-behavior: smooth; }
-
-    /* Fade animation for scroll sections */
-    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 1s ease, transform 1s ease; }
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.9s ease, transform 0.9s ease; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-    /* Carousel fade styling */
-    .slide {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      transition: opacity 1.2s ease-in-out;
-    }
-
-    .slide.active {
-      opacity: 1;
-      z-index: 1;
-    }
-
-    /* Arrows */
-    .arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      color: white;
-      font-size: 3rem;
-      background: rgba(0, 0, 0, 0.3);
-      border: none;
-      border-radius: 9999px;
-      padding: 0.25em 0.4em;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      z-index: 20;
-    }
-    .arrow:hover {
-      color: #dc2626;
-      background: rgba(0, 0, 0, 0.6);
-      box-shadow: 0 0 10px #dc2626;
-    }
-    #prev { left: 20px; }
-    #next { right: 20px; }
-      html { scroll-behavior: smooth; }
-
-  /* 🔥 Navbar link glow hover effect */
-  nav a {
-    position: relative;
-    transition: all 0.3s ease-in-out;
-  }
-
-  nav a:hover {
-    color: #dc2626; /* bright red text on hover */
-    text-shadow: 0 0 10px #dc2626, 0 0 20px #dc2626;
-    transform: scale(1.05);
-  }
-
-  /* Optional subtle underline glow (remove if you prefer no underline) */
-  nav a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 0%;
-    height: 2px;
-    background: #dc2626;
-    transition: width 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  }
-
-  nav a:hover::after {
-    width: 100%;
-    box-shadow: 0 0 8px #dc2626;
-  }
-
-  /* Keep mobile nav links glowing too */
-  #mobile-menu a:hover {
-    background-color: rgba(220, 38, 38, 0.3);
-    box-shadow: 0 0 10px #dc2626;
-  }
-  /* Smoky hover animation for 'Meet Us' button */
-  .smoke-btn {
-    position: relative;
-    overflow: hidden;
-    transition: color 0.3s ease;
-  }
-
-  .smoke-btn::before,
-  .smoke-btn::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: rgba(220, 38, 38, 0.4); /* red smoke color */
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    filter: blur(8px);
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  .smoke-btn:hover::before {
-    animation: smoke-left 0.8s ease-out forwards;
-  }
-
-  .smoke-btn:hover::after {
-    animation: smoke-right 0.8s ease-out forwards;
-  }
-
-  @keyframes smoke-left {
-    0% {
-      width: 0;
-      height: 0;
-      opacity: 0.8;
-      transform: translate(-50%, -50%) rotate(0deg);
-    }
-    100% {
-      width: 250%;
-      height: 250%;
-      opacity: 0;
-      transform: translate(-60%, -70%) rotate(-20deg);
-    }
-  }
-
-  @keyframes smoke-right {
-    0% {
-      width: 0;
-      height: 0;
-      opacity: 0.8;
-      transform: translate(-50%, -50%) rotate(0deg);
-    }
-    100% {
-      width: 250%;
-      height: 250%;
-      opacity: 0;
-      transform: translate(-40%, -30%) rotate(20deg);
-    }
-  }
-</style>
-
+    .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.4s ease-in-out; }
+    .slide.active { opacity: 1; z-index: 1; }
+    .dot { width: 10px; height: 10px; border-radius: 9999px; background: rgba(255,255,255,0.5); transition: background 0.3s, transform 0.3s; cursor: pointer; }
+    .dot.active { background: #dc2626; transform: scale(1.3); }
+    .arrow { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 2.5rem; background: rgba(0,0,0,0.35); border: none; border-radius: 9999px; padding: 0.2em 0.4em; cursor: pointer; transition: all 0.3s ease; z-index: 20; }
+    .arrow:hover { color: #dc2626; background: rgba(0,0,0,0.65); box-shadow: 0 0 12px #dc2626; }
+    #prev { left: 16px; }
+    #next { right: 16px; }
+    nav a { position: relative; transition: all 0.3s ease-in-out; }
+    nav a:hover { color: #dc2626; text-shadow: 0 0 10px #dc2626, 0 0 20px #dc2626; transform: scale(1.05); }
+    nav a::after { content: ""; position: absolute; left: 0; bottom: -2px; width: 0%; height: 2px; background: #dc2626; transition: width 0.3s ease-in-out, box-shadow 0.3s ease-in-out; }
+    nav a:hover::after { width: 100%; box-shadow: 0 0 8px #dc2626; }
+    #mobile-menu a:hover { background-color: rgba(220,38,38,0.3); box-shadow: 0 0 10px #dc2626; }
+    .smoke-btn { position: relative; overflow: hidden; transition: color 0.3s ease; }
+    .smoke-btn::before, .smoke-btn::after { content: ""; position: absolute; top: 50%; left: 50%; width: 0; height: 0; background: rgba(220,38,38,0.4); border-radius: 50%; transform: translate(-50%,-50%); filter: blur(8px); opacity: 0; pointer-events: none; }
+    .smoke-btn:hover::before { animation: smoke-left 0.8s ease-out forwards; }
+    .smoke-btn:hover::after  { animation: smoke-right 0.8s ease-out forwards; }
+    @keyframes smoke-left  { 0%{width:0;height:0;opacity:.8;transform:translate(-50%,-50%) rotate(0)} 100%{width:250%;height:250%;opacity:0;transform:translate(-60%,-70%) rotate(-20deg)} }
+    @keyframes smoke-right { 0%{width:0;height:0;opacity:.8;transform:translate(-50%,-50%) rotate(0)} 100%{width:250%;height:250%;opacity:0;transform:translate(-40%,-30%) rotate(20deg)} }
+    .stat-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .stat-card:hover { transform: translateY(-6px); box-shadow: 0 16px 32px rgba(0,0,0,0.15); }
+    .event-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .event-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
+    .gallery-card img { transition: transform 0.5s ease; }
+    .gallery-card:hover img { transform: scale(1.08); }
   </style>
 </head>
-
 <body class="bg-gray-50 text-gray-900">
 
-  <!-- ✅ Navbar -->
+  <!-- NAVBAR -->
   <nav class="fixed w-full top-0 left-0 bg-primary text-white shadow-lg z-50">
     <div class="max-w-7xl mx-auto flex justify-between items-center h-16 px-4 sm:px-6 lg:px-8">
       <div class="flex items-center">
-        <img src="images/logo.jpg" alt="NFT Weingarten Logo" class="h-12 w-12 object-cover transition-shadow duration-300 hover:shadow-[0_0_12px_#dc2626]">
-        <span class="ml-3 text-lg font-semibold">NFT Weingarten</span>
+        <img src="images/logo.jpg" alt="NFT Weingarten Logo" class="h-12 w-12 object-cover rounded-md transition-shadow duration-300 hover:shadow-[0_0_12px_#dc2626]">
+        <span class="ml-3 text-lg font-semibold tracking-wide">NFT Weingarten</span>
       </div>
-      <div class="hidden md:flex space-x-6">
-        <a href="#home" class="hover:text-gray-200">Home</a>
+      <div class="hidden md:flex space-x-6 items-center">
+        <a href="#home"       class="hover:text-gray-200">Home</a>
         <a href="photos.html" class="hover:text-gray-200">Gallery</a>
-        <a href="CU.html" class="hover:text-gray-200">Contact</a>
-        <a href="About Us.html" class="hover:text-gray-200">About Us</a>
+        <a href="CU.html"     class="hover:text-gray-200">Contact</a>
+        <a href="about.html"  class="hover:text-gray-200">About Us</a>
       </div>
-      <button id="menu-toggle" class="md:hidden text-2xl"><i class="ri-menu-line"></i></button>
+      <button id="menu-toggle" class="md:hidden text-2xl focus:outline-none">
+        <i class="ri-menu-line"></i>
+      </button>
     </div>
-    <div id="mobile-menu" class="hidden flex-col bg-primary md:hidden text-center">
-      <a href="#home" class="py-3 border-t border-blue-700 hover:bg-blue-800">Home</a>
-      <a href="photos.html" class="py-3 border-t border-blue-700 hover:bg-blue-800">Gallery</a>
-      <a href="CU.html" class="py-3 border-t border-blue-700 hover:bg-blue-800">Contact</a>
-      <a href="About Us.html" class="hover:text-gray-200">About Us</a>
+    <div id="mobile-menu" class="hidden flex-col bg-primary md:hidden text-center pb-2">
+      <a href="#home"       class="py-3 border-t border-blue-700 hover:bg-blue-800 block">Home</a>
+      <a href="photos.html" class="py-3 border-t border-blue-700 hover:bg-blue-800 block">Gallery</a>
+      <a href="CU.html"     class="py-3 border-t border-blue-700 hover:bg-blue-800 block">Contact</a>
+      <a href="about.html"  class="py-3 border-t border-blue-700 hover:bg-blue-800 block">About Us</a>
     </div>
   </nav>
 
-  <!-- 🏞️ Hero Carousel -->
+  <!-- HERO CAROUSEL -->
   <section id="home" class="relative w-full h-screen mt-16 overflow-hidden">
     <div id="carousel" class="absolute inset-0">
-      <img src="images/nrna2025/bg.jpg" class="slide active object-cover w-full h-full" alt="NRNA 2025">
-      <img src="images/svj_2025/1000050593.png" class="slide object-cover w-full h-full" alt="SVJ 2025">
-      <img src="images/teamphotos.jpeg" class="slide object-cover w-full h-full" alt="Team Photos">
-      <img src="images/team/team2.jpeg" class="slide object-cover w-full h-full" alt="Team">
+      <img src="images/nrna2025/bg.jpg"          class="slide active object-cover w-full h-full" alt="NRNA 2025">
+      <img src="images/svj_2025/1000050593.png"   class="slide object-cover w-full h-full"        alt="SVJ 2025">
+      <img src="images/teamphotos.jpeg"           class="slide object-cover w-full h-full"        alt="Team Photos">
+      <img src="images/team/team2.jpeg"           class="slide object-cover w-full h-full"        alt="Team">
     </div>
-
-    <!-- Overlay -->
-    <div class="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-center text-white z-10">
-      <h1 class="text-4xl md:text-6xl font-bold mb-4">Nepalese Football Team Weingarten</h1>
-      <p class="text-lg md:text-xl max-w-3xl">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/25 to-black/65 flex flex-col justify-center items-center text-center text-white z-10 px-4">
+      <span class="text-sm uppercase tracking-widest text-red-300 font-semibold mb-3">Weingarten, Germany</span>
+      <h1 class="text-4xl md:text-6xl font-bold mb-4 leading-tight drop-shadow-lg">
+        Nepalese Football Team<br class="hidden md:block"> Weingarten
+      </h1>
+      <p class="text-lg md:text-xl max-w-2xl text-gray-200 mb-8">
         Uniting Nepali youth through passion, teamwork, and football excellence.
       </p>
-      <a href="About Us.html"
-         class="mt-6 bg-secondary px-8 py-3 rounded-button text-white font-semibold smoke-btn">
-        Meet Us
-      </a>
-
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="about.html" class="bg-secondary px-8 py-3 rounded-button text-white font-semibold smoke-btn hover:bg-red-700 transition">Meet Us</a>
+        <a href="photos.html" class="bg-white/20 backdrop-blur-sm border border-white/40 px-8 py-3 rounded-button text-white font-semibold hover:bg-white/30 transition">View Gallery</a>
+      </div>
     </div>
-
-    <!-- Navigation Arrows -->
-    <button id="prev" class="arrow left-5"><i class="ri-arrow-left-s-line"></i></button>
-    <button id="next" class="arrow right-5"><i class="ri-arrow-right-s-line"></i></button>
+    <button id="prev" class="arrow"><i class="ri-arrow-left-s-line"></i></button>
+    <button id="next" class="arrow"><i class="ri-arrow-right-s-line"></i></button>
+    <div id="dots" class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-20"></div>
+    <div class="absolute bottom-6 right-6 z-20 text-white/60 text-xs flex flex-col items-center gap-1 animate-bounce">
+      <i class="ri-arrow-down-line text-lg"></i>
+      <span>Scroll</span>
+    </div>
   </section>
 
-  <!-- ⚽ Gallery Preview -->
+  <!-- STATS BAR -->
+  <section class="py-16 bg-primary text-white fade-in">
+    <div class="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <div class="stat-card bg-white/10 rounded-2xl py-8 px-4">
+        <p class="text-4xl font-bold text-red-300">4+</p>
+        <p class="text-sm mt-2 text-blue-100 uppercase tracking-wide">Years Active</p>
+      </div>
+      <div class="stat-card bg-white/10 rounded-2xl py-8 px-4">
+        <p class="text-4xl font-bold text-red-300">4</p>
+        <p class="text-sm mt-2 text-blue-100 uppercase tracking-wide">Red Bull Cups</p>
+      </div>
+      <div class="stat-card bg-white/10 rounded-2xl py-8 px-4">
+        <p class="text-4xl font-bold text-red-300">1</p>
+        <p class="text-sm mt-2 text-blue-100 uppercase tracking-wide">NRNA Tournament</p>
+      </div>
+      <div class="stat-card bg-white/10 rounded-2xl py-8 px-4">
+        <p class="text-4xl font-bold text-red-300">20+</p>
+        <p class="text-sm mt-2 text-blue-100 uppercase tracking-wide">Players</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY PREVIEW -->
   <section id="gallery" class="py-20 bg-white fade-in">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl font-bold">Our Journey</h2>
-      <p class="text-gray-600 mt-2">Moments that define our growth and brotherhood.</p>
+    <div class="text-center mb-14">
+      <span class="text-secondary font-semibold uppercase tracking-widest text-sm">Our Story</span>
+      <h2 class="text-4xl font-bold mt-2 text-gray-800">Highlights</h2>
+      <p class="text-gray-500 mt-2">Moments that define our growth and brotherhood.</p>
     </div>
-    <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-4">
-      <a href="photos.html" class="group relative overflow-hidden rounded-lg shadow-lg">
-        <img src="images/nrna2025/bg.jpg" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
-        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-        <div class="absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100">
-          <h3 class="font-semibold text-lg">NRNA 2025</h3>
+    <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6 px-4">
+      <a href="tournament.html" class="gallery-card group relative overflow-hidden rounded-2xl shadow-lg block">
+        <img src="images/nrna2025/bg.jpg" class="w-full h-64 object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+        <div class="absolute bottom-4 left-4 text-white">
+          <span class="text-xs uppercase tracking-widest text-red-300">Tournament</span>
+          <h3 class="font-bold text-lg">NRNA 2025</h3>
         </div>
       </a>
-      <a href="photos.html" class="group relative overflow-hidden rounded-lg shadow-lg">
-        <img src="images/svj_2025/1000050593.png" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
-        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-        <div class="absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100">
-          <h3 class="font-semibold text-lg">Home Leagues</h3>
+      <a href="internal_league.html" class="gallery-card group relative overflow-hidden rounded-2xl shadow-lg block">
+        <img src="images/svj_2025/1000050593.png" class="w-full h-64 object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+        <div class="absolute bottom-4 left-4 text-white">
+          <span class="text-xs uppercase tracking-widest text-red-300">Internal</span>
+          <h3 class="font-bold text-lg">Home Leagues</h3>
         </div>
       </a>
-      <a href="photos.html" class="group relative overflow-hidden rounded-lg shadow-lg">
-        <img src="images/1000050834.jpg" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
-        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-        <div class="absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100">
-          <h3 class="font-semibold text-lg">Friendly Matches</h3>
+      <a href="friendly.html" class="gallery-card group relative overflow-hidden rounded-2xl shadow-lg block">
+        <img src="images/1000050834.jpg" class="w-full h-64 object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+        <div class="absolute bottom-4 left-4 text-white">
+          <span class="text-xs uppercase tracking-widest text-red-300">Friendly</span>
+          <h3 class="font-bold text-lg">Friendly Matches</h3>
         </div>
+      </a>
+    </div>
+    <div class="text-center mt-10">
+      <a href="photos.html" class="inline-block border-2 border-primary text-primary px-8 py-3 rounded-button font-semibold hover:bg-primary hover:text-white transition duration-300">
+        Browse Full Gallery →
       </a>
     </div>
   </section>
 
+  <!-- RECENT EVENTS -->
+  <section id="recent-events" class="py-20 bg-gray-50 fade-in">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <span class="text-secondary font-semibold uppercase tracking-widest text-sm">Latest News</span>
+        <h2 class="text-4xl font-bold mt-2 text-gray-800">Recent Events</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="event-card bg-white rounded-2xl shadow-md overflow-hidden">
+          <div class="bg-secondary px-6 py-4 flex items-center gap-3">
+            <i class="ri-fire-line text-white text-xl"></i>
+            <div>
+              <h3 class="text-white font-bold text-lg">Grillen Party</h3>
+              <p class="text-red-200 text-sm">📅 20th September 2025</p>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-gray-600 text-sm mb-4">A chill and joyful evening with teammates, family, and friends — celebrating together off the pitch.</p>
+            <video src="images/team/grillen.mp4" controls class="rounded-xl w-full h-56 object-cover shadow"></video>
+          </div>
+        </div>
+        <div class="event-card bg-white rounded-2xl shadow-md overflow-hidden">
+          <div class="bg-primary px-6 py-4 flex items-center gap-3">
+            <i class="ri-trophy-line text-white text-xl"></i>
+            <div>
+              <h3 class="text-white font-bold text-lg">Red Bull Cup – Season 4</h3>
+              <p class="text-blue-200 text-sm">📅 25th October 2025</p>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-gray-600 text-sm mb-4">NFT Weingarten proudly hosted the 4th season of the Red Bull Cup — another memorable chapter of teamwork and passion.</p>
+            <div class="grid grid-cols-2 gap-3 mb-4">
+              <img src="images/rc4/team2.jpeg"              alt="Red Bull Cup" class="rounded-lg h-32 w-full object-cover shadow hover:scale-105 transition duration-300">
+              <img src="images/rc4/IMG-20251105-WA0009.jpg" alt="Red Bull Cup" class="rounded-lg h-32 w-full object-cover shadow hover:scale-105 transition duration-300">
+              <img src="images/rc4/mvp.jpeg"                alt="MVP"          class="rounded-lg h-32 w-full object-cover shadow hover:scale-105 transition duration-300">
+              <video src="images/rc4/rc4_1.mp4" controls    class="rounded-lg h-32 w-full object-cover shadow"></video>
+            </div>
+            <div class="text-right">
+              <a href="internal_league.html" class="text-primary font-semibold hover:text-secondary transition text-sm">See Full Coverage →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-
-<!-- 🗓️ Recent Events -->
-<section id="recent-events" class="py-20 bg-white fade-in">
-  <div class="max-w-6xl mx-auto px-6 text-center">
-    <h2 class="text-4xl font-bold mb-10 text-primary">Recent Events</h2>
-
-    <div class="space-y-16">
-
-<!-- 📅 Event 1 - Grillen Party -->
-<div class="bg-gray-50 border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition duration-300 text-left p-6">
-  <h3 class="text-2xl font-bold text-secondary mb-2"> Grillen Party</h3>
-  <p class="text-gray-600 mb-2">📅 <strong>20th September 2025</strong></p>
-  <p class="text-gray-700 mb-6">
-    A chill and joyful evening with teammates, family, and friends — celebrating together off the pitch.
-  </p>
-
-  <!-- 🎥 Video Section -->
-  <div class="flex justify-center mb-6">
-    <video src="images/team/grillen.mp4" controls class="rounded-lg shadow-md w-full sm:w-3/4 h-72 object-cover"></video>
-  </div>
-</div>
-
-
-      <!-- 📅 Event 2 - Red Bull Cup -->
-      <div class="bg-gray-50 border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition duration-300 text-left p-6">
-        <h3 class="text-2xl font-bold text-secondary mb-2"> Red Bull Cup - Season 4</h3>
-        <p class="text-gray-600 mb-2">📅 <strong>25th October 2025</strong></p>
-        <p class="text-gray-700 mb-6">
-          NFT Weingarten proudly hosted the 4th season of the Red Bull Cup — another memorable chapter of teamwork and passion.
+  <!-- ABOUT STRIP -->
+  <section class="py-20 bg-white fade-in">
+    <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
+      <img src="images/team/team2.jpeg" alt="Team Weingarten" class="w-full md:w-1/2 rounded-2xl shadow-xl object-cover h-72">
+      <div class="md:w-1/2">
+        <span class="text-secondary font-semibold uppercase tracking-widest text-sm">Who We Are</span>
+        <h2 class="text-3xl font-bold mt-2 mb-4 text-gray-800">United by Passion</h2>
+        <p class="text-gray-600 leading-relaxed mb-6">
+          The Nepalese Football Team Weingarten (NFT Weingarten) is a group of passionate Nepali youth living in Germany,
+          brought together by our shared love for football and teamwork. From small friendly matches to national tournaments,
+          we represent our heritage with pride.
         </p>
-
-        <!-- 🖼️ Photos & Videos -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-          <!-- Photos -->
-          <img src="images/rc4/team2.jpeg" alt="Red Bull Cup Photo 1"
-               class="rounded-lg shadow-md hover:scale-105 transition duration-300 object-cover w-full h-64">
-          <img src="images/rc4/IMG-20251105-WA0009.jpg" alt="Red Bull Cup Photo 2"
-               class="rounded-lg shadow-md hover:scale-105 transition duration-300 object-cover w-full h-64">
-          <img src="images/rc4/mvp.jpeg" alt="MVP of the Red Bull Cup Season 4"
-               class="rounded-lg shadow-md hover:scale-105 transition duration-300 object-cover w-full h-64">
-
-          <!-- Videos -->
-          <video src="images/rc4/rc4_1.mp4" controls class="rounded-lg shadow-md w-full h-64 object-cover"></video>
-        </div>
-
-        <!-- 🔗 See More -->
-        <div class="text-right">
-          <a href="internal league.html" class="text-primary font-semibold hover:text-secondary transition">See More →</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-
- 
-
-<!-- 🌍 Footer -->
-<footer class="bg-gray-900 text-white pt-12 pb-6 mt-10">
-  <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center sm:text-left">
-
-    <!-- 📍 Location -->
-    <div>
-      <h3 class="text-xl font-semibold mb-3 text-secondary">📍 Location</h3>
-      <p class="text-gray-400">Weingarten, Baden-Württemberg, Germany</p>
-    </div>
-
-    <!-- 📞 Contact -->
-    <div>
-      <h3 class="text-xl font-semibold mb-3 text-secondary">📞 Contact Us</h3>
-      <p class="text-gray-400">Email: <a href="mailto:nft.weingarten@gmail.com" class="text-secondary hover:underline">nft.weingarten@gmail.com</a></p>
-    </div>
-
-
-    <!-- 🌐 Follow Us -->
-    <div>
-      <h3 class="text-xl font-semibold mb-3 text-secondary"> Follow Us</h3>
-      <div class="flex justify-center sm:justify-start space-x-4 mt-2">
-        <a href="https://www.facebook.com/NFT.weingarten/" target="_blank" class="text-gray-400 hover:text-blue-500 text-2xl transition"><i class="ri-facebook-fill"></i></a>
-        <a href="https://www.instagram.com/nft.weingarten/" target="_blank" class="text-gray-400 hover:text-pink-500 text-2xl transition"><i class="ri-instagram-fill"></i></a>
-        <a href="https://www.tiktok.com/@nft.weingarten" target="_blank" class="text-gray-400 hover:text-white text-2xl transition"><i class="ri-tiktok-fill"></i></a>
-        <a href="https://www.youtube.com/@nft-weingarten" target="_blank" class="text-gray-400 hover:text-white text-2xl transition"><i class="ri-youtube-fill"></i></a>     
+        <a href="about.html" class="inline-block bg-primary text-white px-7 py-3 rounded-button font-semibold hover:bg-blue-700 transition">Our Story →</a>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- Divider -->
-  <div class="border-t border-gray-700 mt-10 pt-4 text-center">
-    <p class="text-gray-400 text-sm">
-      © 2024 Nepalese Football Team Weingarten. All rights reserved.
-    </p>
-  </div>
-</footer>
+  <!-- FOOTER -->
+  <footer class="bg-gray-900 text-white pt-12 pb-6 mt-10">
+    <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center sm:text-left">
+      <div>
+        <h3 class="text-xl font-semibold mb-3 text-secondary">📍 Location</h3>
+        <p class="text-gray-400">Weingarten, Baden-Württemberg, Germany</p>
+      </div>
+      <div>
+        <h3 class="text-xl font-semibold mb-3 text-secondary">📞 Contact Us</h3>
+        <p class="text-gray-400">Email: <a href="mailto:nft.weingarten@gmail.com" class="text-secondary hover:underline">nft.weingarten@gmail.com</a></p>
+      </div>
+      <div>
+        <h3 class="text-xl font-semibold mb-3 text-secondary">Follow Us</h3>
+        <div class="flex justify-center sm:justify-start space-x-4 mt-2">
+          <a href="https://www.facebook.com/NFT.weingarten/"  target="_blank" class="text-gray-400 hover:text-blue-500 text-2xl transition"><i class="ri-facebook-fill"></i></a>
+          <a href="https://www.instagram.com/nft.weingarten/" target="_blank" class="text-gray-400 hover:text-pink-500 text-2xl transition"><i class="ri-instagram-fill"></i></a>
+          <a href="https://www.tiktok.com/@nft.weingarten"    target="_blank" class="text-gray-400 hover:text-white text-2xl transition"><i class="ri-tiktok-fill"></i></a>
+          <a href="https://www.youtube.com/@nft-weingarten"   target="_blank" class="text-gray-400 hover:text-red-500 text-2xl transition"><i class="ri-youtube-fill"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-gray-700 mt-10 pt-4 text-center">
+      <p class="text-gray-400 text-sm">© 2025 Nepalese Football Team Weingarten. All rights reserved.</p>
+    </div>
+  </footer>
 
-
-  <!-- JS -->
   <script>
+    // Carousel with auto-play + dots
     const slides = document.querySelectorAll('.slide');
-    let index = 0;
+    const dotsContainer = document.getElementById('dots');
+    let index = 0, autoTimer;
 
-    function showSlide(i) {
-      slides.forEach(slide => slide.classList.remove('active'));
-      slides[i].classList.add('active');
+    slides.forEach((_, i) => {
+      const d = document.createElement('div');
+      d.className = 'dot' + (i === 0 ? ' active' : '');
+      d.addEventListener('click', () => { goTo(i); resetAuto(); });
+      dotsContainer.appendChild(d);
+    });
+
+    function getDots() { return dotsContainer.querySelectorAll('.dot'); }
+    function goTo(i) {
+      slides[index].classList.remove('active');
+      getDots()[index].classList.remove('active');
+      index = (i + slides.length) % slides.length;
+      slides[index].classList.add('active');
+      getDots()[index].classList.add('active');
+    }
+    function resetAuto() {
+      clearInterval(autoTimer);
+      autoTimer = setInterval(() => goTo(index + 1), 5000);
     }
 
-    document.getElementById('next').addEventListener('click', () => {
-      index = (index + 1) % slides.length;
-      showSlide(index);
-    });
+    document.getElementById('next').addEventListener('click', () => { goTo(index + 1); resetAuto(); });
+    document.getElementById('prev').addEventListener('click', () => { goTo(index - 1); resetAuto(); });
+    resetAuto();
 
-    document.getElementById('prev').addEventListener('click', () => {
-      index = (index - 1 + slides.length) % slides.length;
-      showSlide(index);
-    });
+    // Fade-in
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-    // fade-in scroll
-    document.addEventListener('scroll', () => {
-      document.querySelectorAll('.fade-in').forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 50) el.classList.add('visible');
-      });
+    // Mobile menu
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+      menu.classList.toggle('flex');
     });
-
-    // mobile menu
-    document.getElementById('menu-toggle').onclick = () => {
-      document.getElementById('mobile-menu').classList.toggle('hidden');
-    };
   </script>
 </body>
 </html>
