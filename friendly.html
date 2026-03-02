@@ -3,103 +3,149 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>League Matches - NFT Weingarten</title>
+  <title>League & Friendly Matches - NFT Weingarten</title>
   <script src="https://cdn.tailwindcss.com/3.4.16"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
   <link rel="icon" type="image/jpeg" href="images/logo.jpg">
   <script>
-    tailwind.config = { theme: { extend: { colors: { primary:'#1e40af', secondary:'#dc2626' }}}};
+    tailwind.config = { theme: { extend: { colors: { primary:'#1e40af', secondary:'#dc2626' } } } };
   </script>
   <style>
-    .fade-in{opacity:0;transform:translateY(20px);transition:opacity 1s,transform 1s;}
-    .fade-in.visible{opacity:1;transform:translateY(0);}
+    html { scroll-behavior: smooth; }
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.9s ease, transform 0.9s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    nav a { position: relative; transition: all 0.3s ease-in-out; }
+    nav a:hover { color: #dc2626; text-shadow: 0 0 10px #dc2626, 0 0 20px #dc2626; transform: scale(1.05); }
+    nav a::after { content: ""; position: absolute; left: 0; bottom: -2px; width: 0%; height: 2px; background: #dc2626; transition: width 0.3s ease-in-out, box-shadow 0.3s ease-in-out; }
+    nav a:hover::after { width: 100%; box-shadow: 0 0 8px #dc2626; }
+    #mobile-menu a:hover { background-color: rgba(220,38,38,0.3); box-shadow: 0 0 10px #dc2626; }
+    .post-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .post-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
+    #lightbox { background: rgba(0,0,0,0.92); backdrop-filter: blur(4px); }
   </style>
 </head>
 <body class="bg-gray-100 text-gray-900">
 
-  <!-- Navbar -->
+  <!-- NAVBAR -->
   <nav class="fixed w-full top-0 left-0 bg-primary text-white shadow-lg z-50">
     <div class="max-w-7xl mx-auto flex justify-between items-center h-16 px-4 sm:px-6 lg:px-8">
       <div class="flex items-center">
-        <img src="images/logo.jpg" alt="NFT Weingarten Logo" class="h-12 w-12 object-cover transition-shadow duration-300 hover:shadow-[0_0_12px_#dc2626]">
-        <span class="ml-3 text-lg font-semibold">NFT Weingarten</span>
+        <img src="images/logo.jpg" alt="NFT Weingarten Logo" class="h-12 w-12 object-cover rounded-md transition-shadow duration-300 hover:shadow-[0_0_12px_#dc2626]">
+        <span class="ml-3 text-lg font-semibold tracking-wide">NFT Weingarten</span>
       </div>
       <div class="hidden md:flex space-x-6 items-center">
-        <a href="front.html" class="hover:text-gray-200">Home</a>
-        <div class="relative group">
-          <a href="photos.html" class="hover:text-gray-200">Gallery </a>
-        <a href="CU.html" class="hover:text-gray-200">Contact</a>
+        <a href="index.html"      class="hover:text-gray-200">Home</a>
+        <a href="photos.html"     class="hover:text-gray-200">Gallery</a>
+        <a href="contactus.html"  class="hover:text-gray-200">Contact</a>
+        <a href="aboutus.html"    class="hover:text-gray-200">About Us</a>
       </div>
-      <button id="menu-toggle" class="md:hidden text-2xl"><i class="ri-menu-line"></i></button>
+      <button id="menu-toggle" class="md:hidden text-2xl focus:outline-none">
+        <i class="ri-menu-line"></i>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden flex-col bg-primary md:hidden text-center pb-2">
+      <a href="index.html"     class="py-3 border-t border-blue-700 hover:bg-blue-800 block">Home</a>
+      <a href="photos.html"    class="py-3 border-t border-blue-700 hover:bg-blue-800 block">Gallery</a>
+      <a href="contactus.html" class="py-3 border-t border-blue-700 hover:bg-blue-800 block">Contact</a>
+      <a href="aboutus.html"   class="py-3 border-t border-blue-700 hover:bg-blue-800 block">About Us</a>
     </div>
   </nav>
 
-  <!-- Header -->
-  <header class="bg-secondary text-white py-20 mt-16 text-center fade-in">
-    <h1 class="text-5xl font-bold mb-4">League & Friendly Matches</h1>
+  <!-- HEADER -->
+  <header class="bg-secondary text-white py-24 mt-16 text-center fade-in">
+    <span class="text-red-300 font-semibold uppercase tracking-widest text-sm">On The Pitch</span>
+    <h1 class="text-5xl font-bold mt-3 mb-4">League & Friendly Matches</h1>
     <p class="text-red-100 text-lg">Our Journey in Local and Regional Games</p>
   </header>
 
-  <!-- Posts -->
+  <!-- POSTS -->
   <section class="py-20 fade-in">
-    <div class="max-w-5xl mx-auto space-y-10 px-6">
-      <div class="bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden">
-        <img src="images/1000050834.jpg" alt="Friendly Matches" class="w-full object-cover max-h-[600px]">
+    <div class="max-w-4xl mx-auto space-y-10 px-6">
+
+      <!-- Back link -->
+      <a href="photos.html" class="inline-flex items-center gap-2 text-primary font-semibold hover:text-secondary transition text-sm">
+        <i class="ri-arrow-left-line"></i> Back to Gallery
+      </a>
+
+      <!-- Post 1 -->
+      <div class="post-card bg-white rounded-2xl shadow-md overflow-hidden">
+        <img src="images/1000050834.jpg" alt="Friendly Matches" class="w-full object-cover max-h-[500px] cursor-pointer open-image">
         <div class="p-6">
-          <h3 class="text-xl font-bold">Friendly Matches – 2022–2025</h3>
-          <p class="text-gray-600 mt-2">
+          <div class="flex items-center gap-3 mb-3">
+            <img src="images/logo.jpg" class="w-10 h-10 rounded-md" alt="NFT Logo">
+            <div>
+              <h3 class="font-bold text-primary">NFT Weingarten</h3>
+              <p class="text-sm text-gray-400">💪 2022–2025 • Weingarten & Local Fields</p>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold text-gray-800 mb-2">Friendly Matches – 2022–2025</h3>
+          <p class="text-gray-600">
             From early practice sessions to competitive local games, our friendly matches are the heart of NFT Weingarten.
-            Every game is a lesson and a moment to strengthen our connection as a team.
+            Every game is a lesson and a moment to strengthen our connection as a team. These matches helped build
+            the chemistry and discipline that now defines us on every pitch we step on.
           </p>
-          <p class="text-sm text-gray-400 mt-3">💪 Weingarten • Local Fields</p>
         </div>
       </div>
+
     </div>
   </section>
 
-
-<!-- 🌍 Footer -->
-<footer class="bg-gray-900 text-white pt-12 pb-6 mt-10">
-  <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center sm:text-left">
-
-    <!-- 📍 Location -->
-    <div>
-      <h3 class="text-xl font-semibold mb-3 text-secondary">📍 Location</h3>
-      <p class="text-gray-400">Weingarten, Baden-Württemberg, Germany</p>
-    </div>
-
-    <!-- 📞 Contact -->
-    <div>
-      <h3 class="text-xl font-semibold mb-3 text-secondary">📞 Contact Us</h3>
-      <p class="text-gray-400">Email: <a href="mailto:nft.weingarten@gmail.com" class="text-secondary hover:underline">nft.weingarten@gmail.com</a></p>
-    </div>
-
-
-    <!-- 🌐 Follow Us -->
-    <div>
-      <h3 class="text-xl font-semibold mb-3 text-secondary"> Follow Us</h3>
-      <div class="flex justify-center sm:justify-start space-x-4 mt-2">
-        <a href="https://www.facebook.com/NFT.weingarten/" target="_blank" class="text-gray-400 hover:text-blue-500 text-2xl transition"><i class="ri-facebook-fill"></i></a>
-        <a href="https://www.instagram.com/nft.weingarten/" target="_blank" class="text-gray-400 hover:text-pink-500 text-2xl transition"><i class="ri-instagram-fill"></i></a>
-        <a href="https://www.tiktok.com/@nft.weingarten" target="_blank" class="text-gray-400 hover:text-white text-2xl transition"><i class="ri-tiktok-fill"></i></a>
-        <a href="https://www.youtube.com/@nft-weingarten" target="_blank" class="text-gray-400 hover:text-white text-2xl transition"><i class="ri-youtube-fill"></i></a>     
+  <!-- FOOTER -->
+  <footer class="bg-gray-900 text-white pt-12 pb-6 mt-10">
+    <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center sm:text-left">
+      <div>
+        <h3 class="text-xl font-semibold mb-3 text-secondary">📍 Location</h3>
+        <p class="text-gray-400">Weingarten, Baden-Württemberg, Germany</p>
+      </div>
+      <div>
+        <h3 class="text-xl font-semibold mb-3 text-secondary">📞 Contact Us</h3>
+        <p class="text-gray-400">Email: <a href="mailto:nft.weingarten@gmail.com" class="text-secondary hover:underline">nft.weingarten@gmail.com</a></p>
+      </div>
+      <div>
+        <h3 class="text-xl font-semibold mb-3 text-secondary">Follow Us</h3>
+        <div class="flex justify-center sm:justify-start space-x-4 mt-2">
+          <a href="https://www.facebook.com/NFT.weingarten/"  target="_blank" class="text-gray-400 hover:text-blue-500 text-2xl transition"><i class="ri-facebook-fill"></i></a>
+          <a href="https://www.instagram.com/nft.weingarten/" target="_blank" class="text-gray-400 hover:text-pink-500 text-2xl transition"><i class="ri-instagram-fill"></i></a>
+          <a href="https://www.tiktok.com/@nft.weingarten"    target="_blank" class="text-gray-400 hover:text-white text-2xl transition"><i class="ri-tiktok-fill"></i></a>
+          <a href="https://www.youtube.com/@nft-weingarten"   target="_blank" class="text-gray-400 hover:text-red-500 text-2xl transition"><i class="ri-youtube-fill"></i></a>
+        </div>
       </div>
     </div>
+    <div class="border-t border-gray-700 mt-10 pt-4 text-center">
+      <p class="text-gray-400 text-sm">© 2025 Nepalese Football Team Weingarten. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="hidden fixed inset-0 z-50 flex justify-center items-center">
+    <img id="lightbox-img" src="" class="max-w-[90%] max-h-[90%] rounded-xl shadow-2xl" alt="Fullscreen">
+    <button id="lightbox-close" class="absolute top-6 right-8 text-white text-5xl font-bold hover:text-secondary transition">×</button>
   </div>
-
-  <!-- Divider -->
-  <div class="border-t border-gray-700 mt-10 pt-4 text-center">
-    <p class="text-gray-400 text-sm">
-      © 2024 Nepalese Football Team Weingarten. All rights reserved.
-    </p>
-  </div>
-</footer>
-
-
 
   <script>
-    document.addEventListener('scroll',()=>{document.querySelectorAll('.fade-in').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<window.innerHeight-50)el.classList.add('visible');});});
-    document.getElementById('menu-toggle').onclick=()=>{document.getElementById('mobile-menu').classList.toggle('hidden');};
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+      menu.classList.toggle('flex');
+    });
+
+    document.querySelectorAll('.open-image').forEach(img => {
+      img.addEventListener('click', () => {
+        document.getElementById('lightbox-img').src = img.src;
+        document.getElementById('lightbox').classList.remove('hidden');
+      });
+    });
+    document.getElementById('lightbox-close').addEventListener('click', () => {
+      document.getElementById('lightbox').classList.add('hidden');
+    });
+    document.getElementById('lightbox').addEventListener('click', e => {
+      if (e.target.id === 'lightbox') e.currentTarget.classList.add('hidden');
+    });
   </script>
 </body>
 </html>
